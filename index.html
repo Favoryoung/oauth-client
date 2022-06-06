@@ -5,13 +5,48 @@
     <title>OAuth Client</title>
 </head>
 <body>
-<lable>点击图标 授权登录</lable>
 <div>
-    <a href='https://www.facebook.com/v14.0/dialog/oauth?client_id={692796835356905}&redirect_uri={"https://favoryoung.github.io/oauth-client/"}'>
+    <a href='https://www.facebook.com/v14.0/dialog/oauth?client_id=692796835356905&redirect_uri=https://favoryoung.github.io/oauth-client/'>
         <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yp/r/rb6g_AF6fPq.png" alt="facebook">
     </a>
 </div>
+<div><span id="code"></span></div>
 </body>
+<script>
+    /**
+     * [获取URL中的参数名及参数值的集合]
+     * 示例URL:"http://test/getIndex/indexRequest.html?uid=admin&passWord=123456&fid=1314&name=阿豪";
+     * @param {[string]} urlStr [当该参数不为空的时候，则解析该url中的参数集合]
+     * @return {[string]}       [参数集合]
+     */
+    function GetRequest(urlStr) {
+        if (typeof urlStr == "undefined") {
+            // 获取url中"?"符后的字符串
+            var url = decodeURI(location.search);
+        } else {
+            var url = "?" + urlStr.split("?")[1];
+        }
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    function setCode() {
+        requestParam = GetRequest(window.location.href)
+        var message
+        if (requestParam.code) {
+            message = "登录的 Code:" + requestParam.code
+        } else {
+            message = "请点击图标登录"
+        }
+        document.getElementById("code").textContent=message
+    }
+    setCode()
+</script>
 </html>
-
-
