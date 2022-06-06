@@ -7,11 +7,15 @@
 <body>
 <lable>点击图标 授权登录</lable>
 <div>
-    <a href="https://www.facebook.com/v14.0/dialog/oauth?client_id={692796835356905}&redirect_uri={https://favoryoung.github.io/oauth-client/}">
-     <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yp/r/rb6g_AF6fPq.png" alt="facebook">
-    </a>
+     <img onclick="login();" src="https://static.xx.fbcdn.net/rsrc.php/v3/yp/r/rb6g_AF6fPq.png" alt="facebook">
 </div>
 </body>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v14.0&appId=692796835356905&autoLogAppEvents=1"></script>
+<script>
+    function login() {
+        FB.login(function(response){
+            console.log(response); // 在控制台打印返回的access_token
+        },{scope: 'public_profile,email'});
+    }
+</script>
 </html>
-
-
