@@ -20,6 +20,11 @@
      * @return {[string]}       [参数集合]
      */
     function GetRequest(urlStr) {
+        position = urlStr.lastIndexOf("#")
+        if (position !== -1) {
+            urlStr = urlStr.substring(0, position)
+        }
+
         if (typeof urlStr == "undefined") {
             // 获取url中"?"符后的字符串
             var url = decodeURI(location.search);
