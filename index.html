@@ -41,11 +41,11 @@
         requestParam = GetRequest(window.location.href)
         var message
         if (requestParam.code) {
-            message = "登录的 Code:" + requestParam.code
+            message = "已登录 Code如下:<br>" + "<text>" +requestParam.code+"</text>"
         } else {
             message = "请点击图标登录"
         }
-        document.getElementById("code").textContent=message
+        document.getElementById("code").innerHTML=message
     }
     setCode()
 </script>
